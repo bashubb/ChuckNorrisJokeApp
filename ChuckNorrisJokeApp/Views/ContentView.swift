@@ -11,21 +11,31 @@ struct ContentView: View {
     
     @EnvironmentObject var model: ContentModel
     
+    @State var joke: String?
     
     var body: some View {
-        VStack {
+        VStack(spacing:20) {
             Text("Chuck Norris Joke app")
                 .font(.title)
-            
-            if model.joke != nil {
-                Text(model.joke!.value)
+        
+            if joke != nil {
+                Text(joke!)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(.gray)
+                    .opacity(0.8)
+                    .cornerRadius(10)
+                    .animation(.easeInOut, value: joke)
+                    
+                
+                
             }
             
-            Button("Get Joke", action: model.getRemoteData)
-            
-            
-            
-            
+            Button("Get Joke", action: {
+                model.getRemoteData()
+                self.joke = model.joke?.value
+            })
+                .buttonStyle(.borderedProminent)
             
         }
         .padding()

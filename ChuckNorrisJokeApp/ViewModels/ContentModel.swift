@@ -23,7 +23,7 @@ class ContentModel: ObservableObject {
         if let url = url {
             
             //Create URL request
-            var request = URLRequest(url: url)
+            let request = URLRequest(url: url)
             
             
             //Create a session
