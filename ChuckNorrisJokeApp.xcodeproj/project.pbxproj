@@ -7,22 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B513D4772A438FEA00329624 /* ChuckNorrisJokeAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513D4762A438FEA00329624 /* ChuckNorrisJokeAppApp.swift */; };
+		B513D4772A438FEA00329624 /* ChuckNorrisJokeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513D4762A438FEA00329624 /* ChuckNorrisJokeApp.swift */; };
 		B513D4792A438FEA00329624 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513D4782A438FEA00329624 /* ContentView.swift */; };
 		B513D47B2A438FEC00329624 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B513D47A2A438FEC00329624 /* Assets.xcassets */; };
 		B513D47E2A438FEC00329624 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B513D47D2A438FEC00329624 /* Preview Assets.xcassets */; };
 		B513D4882A43924700329624 /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513D4872A43924700329624 /* Joke.swift */; };
 		B513D48A2A43938400329624 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513D4892A43938400329624 /* ContentModel.swift */; };
+		B5743E1C2A51FC9C00BCFCEF /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */; };
+		B5743E1E2A51FD7100BCFCEF /* FavoriteJokesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B513D4732A438FEA00329624 /* ChuckNorrisJokeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChuckNorrisJokeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B513D4762A438FEA00329624 /* ChuckNorrisJokeAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisJokeAppApp.swift; sourceTree = "<group>"; };
+		B513D4762A438FEA00329624 /* ChuckNorrisJokeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisJokeApp.swift; sourceTree = "<group>"; };
 		B513D4782A438FEA00329624 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B513D47A2A438FEC00329624 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B513D47D2A438FEC00329624 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B513D4872A43924700329624 /* Joke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
 		B513D4892A43938400329624 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteJokesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +59,7 @@
 		B513D4752A438FEA00329624 /* ChuckNorrisJokeApp */ = {
 			isa = PBXGroup;
 			children = (
-				B513D4762A438FEA00329624 /* ChuckNorrisJokeAppApp.swift */,
+				B513D4762A438FEA00329624 /* ChuckNorrisJokeApp.swift */,
 				B513D4862A43922500329624 /* Views */,
 				B513D4852A43921D00329624 /* ViewModels */,
 				B513D4842A43920D00329624 /* Models */,
@@ -92,7 +96,9 @@
 		B513D4862A43922500329624 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */,
 				B513D4782A438FEA00329624 /* ContentView.swift */,
+				B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,9 +174,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B513D4792A438FEA00329624 /* ContentView.swift in Sources */,
+				B5743E1E2A51FD7100BCFCEF /* FavoriteJokesView.swift in Sources */,
 				B513D48A2A43938400329624 /* ContentModel.swift in Sources */,
-				B513D4772A438FEA00329624 /* ChuckNorrisJokeAppApp.swift in Sources */,
+				B513D4772A438FEA00329624 /* ChuckNorrisJokeApp.swift in Sources */,
 				B513D4882A43924700329624 /* Joke.swift in Sources */,
+				B5743E1C2A51FC9C00BCFCEF /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

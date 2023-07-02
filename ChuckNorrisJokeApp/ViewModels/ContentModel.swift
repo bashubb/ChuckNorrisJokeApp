@@ -9,10 +9,11 @@ import Foundation
 
 class ContentModel: ObservableObject {
     
-    @Published var joke: Joke?
+    @Published var joke = Joke()
     
     init() {
-       
+        
+        getRemoteData()
     }
     
     
@@ -44,10 +45,10 @@ class ContentModel: ObservableObject {
                         let dataJoke = try decoder.decode(Joke.self, from: data!)
                         
                         DispatchQueue.main.async {
-                            
                             self.joke = dataJoke
-                        
                         }
+                        
+                        
                     }
                     catch {
                         // Problem with data

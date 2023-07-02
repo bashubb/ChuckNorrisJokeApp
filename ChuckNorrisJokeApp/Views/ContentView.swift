@@ -11,33 +11,38 @@ struct ContentView: View {
     
     @EnvironmentObject var model: ContentModel
     
-    @State var joke: String?
+    @State var jokeOnScreen = ""
+    @State var jokeIsShowing = false
     
     var body: some View {
         VStack(spacing:20) {
             Text("Chuck Norris Joke app")
                 .font(.title)
         
-            if joke != nil {
-                Text(joke!)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(.gray)
-                    .opacity(0.8)
-                    .cornerRadius(10)
-                    .animation(.easeInOut, value: joke)
-                    
-                
+            if jokeIsShowing {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.gray.opacity(0.5))
+                    Text(jokeOnScreen)
+                        .foregroundColor(.white)
+                        .padding()
+                }
                 
             }
             
             Button("Get Joke", action: {
                 model.getRemoteData()
-                self.joke = model.joke?.value
+                self.jokeOnScreen = model.joke.value ?? ""
             })
                 .buttonStyle(.borderedProminent)
             
-        }
+        }.onChange(of: self.jokeOnScreen, perform: { newValue in
+            if self.jokeOnScreen != "" {
+                withAnimation {
+                    self.jokeIsShowing = true
+                }
+            }
+        })
         .padding()
     }
 }
