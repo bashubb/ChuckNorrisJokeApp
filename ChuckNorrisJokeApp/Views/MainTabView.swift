@@ -12,34 +12,33 @@ struct MainTabView: View {
     @State var selectedView = 0
     
     var body: some View {
-        ZStack {
-            Color.black
-            
-            TabView(selection: $selectedView) {
-                // First tab
+        
+        TabView(selection: $selectedView) {
+            // First tab
+            VStack {
+                ContentView()
+            }
+            .tabItem {
                 VStack {
-                    ContentView()
+                    Image(systemName: "face.smiling")
+                    Text("Jokes")
+                    
                 }
-                .tabItem {
-                    VStack {
-                        Image(systemName: "face.smiling")
-                        Text("Jokes")
-                        
-                    }
-                        
-                }.tag(0)
                 
-                //Second tab
-                VStack {
-                    FavoriteJokesView()
-                }
-                .tabItem {
-                    Image(systemName: "heart")
-                    Text("favorite")
-                        
-                }.tag(1)
-            }.accentColor(.yellow)
-        }
+            }.tag(0)
+            
+            //Second tab
+            VStack {
+                FavoriteJokesView()
+            }
+            .tabItem {
+                Image(systemName: "heart")
+                Text("favorite")
+                
+            }.tag(1)
+            
+        }.accentColor(.yellow)
+        
     }
 }
 

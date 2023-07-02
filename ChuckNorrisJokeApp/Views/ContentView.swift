@@ -16,25 +16,40 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing:20) {
+            
             Text("Chuck Norris Joke app")
                 .font(.title)
-        
+            
             if jokeIsShowing {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.gray.opacity(0.5))
-                    Text(jokeOnScreen)
-                        .foregroundColor(.white)
-                        .padding()
-                }
-                
+                Text(jokeOnScreen)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.gray.opacity(0.5)))
+                    .contextMenu {
+                        Button {
+                            model.favoriteJokes.append(jokeOnScreen)
+                        } label: {
+                            Text("Add to favorite")
+                            Image(systemName: "heart")
+                        }
+                        
+                        Button {
+                            
+                        } label: {
+                            Text("Share")
+                            Image(systemName: "square.and.arrow.up")
+                        }
+
+                    }
             }
             
             Button("Get Joke", action: {
                 model.getRemoteData()
                 self.jokeOnScreen = model.joke.value ?? ""
             })
-                .buttonStyle(.borderedProminent)
+            .buttonStyle(.borderedProminent)
+            
             
         }.onChange(of: self.jokeOnScreen, perform: { newValue in
             if self.jokeOnScreen != "" {

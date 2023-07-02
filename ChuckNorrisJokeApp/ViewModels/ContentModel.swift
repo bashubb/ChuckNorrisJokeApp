@@ -9,6 +9,7 @@ import Foundation
 
 class ContentModel: ObservableObject {
     
+    @Published var favoriteJokes: [String] = []
     @Published var joke = Joke()
     
     init() {
