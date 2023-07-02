@@ -14,22 +14,17 @@ struct FavoriteJokesView: View {
     
     var body: some View {
         VStack {
-            
-            List {
-                ForEach($model.favoriteJokes, id: \.self) { $item in
-                    Text(item)
-                        .swipeActions {
-                            Button {
-                                model.favoriteJokes.remove(at: model.favoriteJokes.firstIndex(of: item)!)
-                                self.isDeleted = true
-                            } label: {
-                                Image(systemName: isDeleted ? "trash" : "trash.fill")
-                            }
-                            .tint(isDeleted ? .green : .red)
-                            
+        
+                List {
+                    Section {
+                        ForEach($model.favoriteJokes, id: \.self) { $item in
+                            Text(item)
                         }
+                        .onDelete { offsets in
+                            model.favoriteJokes.remove(atOffsets: offsets)
+                        }
+                    }
                 }
-            }
             
         }
     }

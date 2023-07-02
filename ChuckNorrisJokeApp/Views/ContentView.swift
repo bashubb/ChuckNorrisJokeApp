@@ -14,6 +14,7 @@ struct ContentView: View {
     @State var jokeOnScreen = ""
     @State var jokeIsShowing = false
     
+    
     var body: some View {
         VStack(spacing:20) {
             
@@ -30,17 +31,14 @@ struct ContentView: View {
                         Button {
                             model.favoriteJokes.append(jokeOnScreen)
                         } label: {
+
                             Text("Add to favorite")
                             Image(systemName: "heart")
                         }
                         
-                        Button {
-                            
-                        } label: {
-                            Text("Share")
-                            Image(systemName: "square.and.arrow.up")
-                        }
+                        ShareLink(item: jokeOnScreen)
 
+                        
                     }
             }
             
