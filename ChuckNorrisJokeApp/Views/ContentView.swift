@@ -16,7 +16,7 @@ struct ContentView: View {
     
     
     var body: some View {
-        VStack(spacing:20) {
+        VStack(spacing:40) {
             
             Text("Chuck Norris Joke app")
                 .font(.title)
@@ -27,7 +27,8 @@ struct ContentView: View {
                 
             }
             
-            Button("Get Joke", action: {
+            
+            Button {
                 model.getRemoteData {
                     withAnimation {
                         guard model.joke != nil else{return}
@@ -35,11 +36,21 @@ struct ContentView: View {
                         self.jokeIsShowing = true
                     }
                 }
-            })
-            .buttonStyle(.borderedProminent)
+            } label: {
+                Text("Get Joke")
+                    .foregroundColor(.white)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 15)
+                    .background(RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.blue)
+                        .shadow(radius: 5))
+            }
+            
+
             
         }
         .padding()
+        .font(.title2)
     }
 }
 

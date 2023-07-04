@@ -19,7 +19,8 @@ struct JokeDetailView: View {
                 .foregroundColor(.white)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.gray.opacity(0.5)))
+                    .fill(Color.gray.opacity(0.5))
+                    .shadow(color: Color.gray, radius: 8))
                 .contextMenu {
                     Button {
                         model.favoriteJokes.append(joke)
