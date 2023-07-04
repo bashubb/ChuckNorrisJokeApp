@@ -10,15 +10,15 @@ import Foundation
 class ContentModel: ObservableObject {
     
     @Published var favoriteJokes: [String] = []
-    @Published var joke = Joke()
+    @Published var joke: Joke?
     
     init() {
         
-        getRemoteData()
+        
     }
     
     
-    func getRemoteData() {
+    func getRemoteData(completion: @escaping() -> Void) {
         
         let url = URL(string: "https://api.chucknorris.io/jokes/random")
         
@@ -47,9 +47,10 @@ class ContentModel: ObservableObject {
                         
                         DispatchQueue.main.async {
                             self.joke = dataJoke
+                            
+                            // Call completion closure
+                            completion()
                         }
-                        
-                        
                     }
                     catch {
                         // Problem with data
@@ -58,7 +59,6 @@ class ContentModel: ObservableObject {
                 }
             }
             dataTask.resume()
-            
         }
     }
     

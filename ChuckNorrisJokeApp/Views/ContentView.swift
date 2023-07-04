@@ -22,40 +22,23 @@ struct ContentView: View {
                 .font(.title)
             
             if jokeIsShowing {
-                Text(jokeOnScreen)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.gray.opacity(0.5)))
-                    .contextMenu {
-                        Button {
-                            model.favoriteJokes.append(jokeOnScreen)
-                        } label: {
-
-                            Text("Add to favorite")
-                            Image(systemName: "heart")
-                        }
-                        
-                        ShareLink(item: jokeOnScreen)
-
-                        
-                    }
+                
+                    JokeDetailView(joke:jokeOnScreen)
+                
             }
             
             Button("Get Joke", action: {
-                model.getRemoteData()
-                self.jokeOnScreen = model.joke.value ?? ""
+                model.getRemoteData {
+                    withAnimation {
+                        guard model.joke != nil else{return}
+                        self.jokeOnScreen = model.joke?.value ?? ""
+                        self.jokeIsShowing = true
+                    }
+                }
             })
             .buttonStyle(.borderedProminent)
             
-            
-        }.onChange(of: self.jokeOnScreen, perform: { newValue in
-            if self.jokeOnScreen != "" {
-                withAnimation {
-                    self.jokeIsShowing = true
-                }
-            }
-        })
+        }
         .padding()
     }
 }

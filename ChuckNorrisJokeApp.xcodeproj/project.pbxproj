@@ -15,6 +15,7 @@
 		B513D48A2A43938400329624 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513D4892A43938400329624 /* ContentModel.swift */; };
 		B5743E1C2A51FC9C00BCFCEF /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */; };
 		B5743E1E2A51FD7100BCFCEF /* FavoriteJokesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */; };
+		B5743E2B2A549ED100BCFCEF /* JokeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		B513D4892A43938400329624 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteJokesView.swift; sourceTree = "<group>"; };
+		B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */,
 				B513D4782A438FEA00329624 /* ContentView.swift */,
 				B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */,
+				B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5743E2B2A549ED100BCFCEF /* JokeDetailView.swift in Sources */,
 				B513D4792A438FEA00329624 /* ContentView.swift in Sources */,
 				B5743E1E2A51FD7100BCFCEF /* FavoriteJokesView.swift in Sources */,
 				B513D48A2A43938400329624 /* ContentModel.swift in Sources */,
