@@ -11,7 +11,7 @@ import SwiftUI
 struct ChuckNorrisJokeApp: App {
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
+            MainTabView()
                 .environmentObject(ContentModel())
         }
     }

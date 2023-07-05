@@ -11,6 +11,8 @@ struct JokeDetailView: View {
     
     @EnvironmentObject var model: ContentModel
     
+    @State var isAlertShowing = false
+    
     var joke: String
     
     var body: some View {
@@ -23,7 +25,12 @@ struct JokeDetailView: View {
                     .shadow(color: Color.gray, radius: 8))
                 .contextMenu {
                     Button {
-                        model.favoriteJokes.append(joke)
+                        if !model.favoriteJokes.contains(joke) {
+                            model.favoriteJokes.append(joke)
+                        } else {
+                            isAlertShowing = true
+                        }
+                        
                     } label: {
                         
                         Text("Add to favorite")
@@ -34,6 +41,10 @@ struct JokeDetailView: View {
                     
                     
                 }
+        }
+        .alert(isPresented: $isAlertShowing) { () -> Alert in
+            Alert(title: Text("You already have that joke, add another one!"))
+                  
         }
     }
     

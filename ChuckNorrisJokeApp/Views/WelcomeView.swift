@@ -12,23 +12,25 @@ struct WelcomeView: View {
     @State private var expand = false
     
     var body: some View {
-        ZStack {
-            Color(red: 0.23, green: 0.191, blue: 0.204)
-                .ignoresSafeArea()
-            VStack {
-                Image("chuck")
+        VStack {
+            
+            if expand {
+                Image("chucknorris")
                     .resizable()
-                    .scaledToFill()
-                    .onAppear {
-                        expand.toggle()}
-                    .animation(.easeIn, value: expand)
+                    .aspectRatio(contentMode: .fit)
+                    .transition(.slide)
+                    
             }
-            .statusBarHidden(true)
-            .padding(30)
-            
-            
-            
         }
+        .onAppear {
+            withAnimation(.spring()) {
+                expand.toggle()
+            }
+        }
+                        
+            
+            
+        
     }
 }
 
