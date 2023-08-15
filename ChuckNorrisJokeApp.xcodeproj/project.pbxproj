@@ -100,11 +100,11 @@
 		B513D4862A43922500329624 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B5743E2C2A55CE6400BCFCEF /* WelcomeView.swift */,
 				B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */,
 				B513D4782A438FEA00329624 /* ContentView.swift */,
 				B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */,
 				B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */,
-				B5743E2C2A55CE6400BCFCEF /* WelcomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

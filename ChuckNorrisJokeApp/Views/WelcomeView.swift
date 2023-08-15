@@ -9,27 +9,36 @@ import SwiftUI
 
 struct WelcomeView: View {
     
-    @State private var expand = false
+    @State private var move = false
     
     var body: some View {
-        VStack {
+        
+        
+        ZStack {
+            MainTabView()
+                .environmentObject(ContentModel())
             
-            if expand {
-                Image("chucknorris")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .transition(.slide)
-                    
+            ZStack {
+                Color.white
+                    .ignoresSafeArea()
+                
+                VStack {
+                    Image("chucknorris")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
+                
+            }
+            .offset(x: 0, y: move ? -1000 : 0)
+            .onAppear {
+                
+                move = true
             }
         }
-        .onAppear {
-            withAnimation(.spring()) {
-                expand.toggle()
-            }
-        }
-                        
-            
-            
+        .ignoresSafeArea()
+        .animation(.easeOut.delay(3), value: move)
+        
+        
         
     }
 }
