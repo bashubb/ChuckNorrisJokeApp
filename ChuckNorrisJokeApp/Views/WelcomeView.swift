@@ -35,8 +35,8 @@ struct WelcomeView: View {
                 move = true
             }
         }
-        .ignoresSafeArea()
-        .animation(.easeOut.delay(3), value: move)
+        
+        .animation(.easeOut(duration: 1.5).delay(3), value: move)
         
         
         
