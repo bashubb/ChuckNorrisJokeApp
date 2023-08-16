@@ -67,6 +67,7 @@ struct FavoriteJokesView: View {
                             .onEnded({ value in
                                 show = false
                             }))
+                    .animation(.default, value: popUpLocation)
             }
         }
         .animation(.default, value:show)
@@ -131,6 +132,7 @@ struct PopUpJoke: View {
                 
                 // Share joke in text message etc
                 ShareLink(item: jokeToShow)
+                    .foregroundColor(.gray)
             }
             .font(.caption)
             .frame(maxWidth: .infinity, alignment: .trailing)

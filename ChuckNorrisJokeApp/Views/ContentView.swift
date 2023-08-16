@@ -36,7 +36,7 @@ struct ContentView: View {
                 }
                 
                 
-                Button {
+                Button("Get Joke") {
                     model.getRemoteData {
                         
                         guard model.joke != nil else{return}
@@ -44,15 +44,10 @@ struct ContentView: View {
                         self.jokeIsShowing = true
                         
                     }
-                } label: {
-                    Text("Get Joke")
-                        .foregroundColor(.white)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 15)
-                        .background(RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.blue)
-                            .shadow(radius: 5))
                 }
+                .buttonStyle(CustomButtonStyle())
+                .padding()
+                
                 
                 
                 
@@ -71,5 +66,25 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(ContentModel())
+    }
+}
+
+
+struct CustomButtonStyle: ButtonStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(configuration.isPressed ? Color.yellow : Color.gray)
+                .frame(height: 50)
+            
+            configuration.label
+                .foregroundColor(.white)
+        }
+        .shadow(radius: 8)
+        .scaleEffect(configuration.isPressed ? 0.96 : 1)
+        .animation(.easeOut, value: configuration.isPressed)
+        
     }
 }
