@@ -27,17 +27,19 @@ struct FavoriteJokesView: View {
     var body: some View {
         ZStack {
             
-            VStack {
+            VStack(spacing:0) {
                 
                 //The header
                 Text(headerText)
                     .font(.title)
                     .foregroundColor(.white)
-                    .shadow(radius: 3)
                     .padding()
                     .padding(.top, 50)
                     .frame(maxWidth: .infinity)
                     .background(Color.yellow)
+                    .shadow(radius: 4)
+                    .padding(.bottom, 4)
+                    
                     
                     
                     //List of jokes

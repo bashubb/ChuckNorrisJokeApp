@@ -17,6 +17,7 @@ struct TabInfo: Identifiable {
     var id = UUID()
     var view : Tab
     var icon : String
+    var iconSelected: String
     var name : String
 }
 
@@ -72,10 +73,11 @@ struct MainTabView: View {
         .onAppear {
             //Create tabs
             var newTabs = [TabInfo]()
-            newTabs.append(TabInfo(view: Tab.Jokes, icon: "smiley", name: "Jokes"))
-            newTabs.append(TabInfo(view: Tab.Favorite, icon: "heart", name: "Favorite"))
+            newTabs.append(TabInfo(view: Tab.Jokes, icon: "smiley", iconSelected: "smiley.fill", name: "Jokes"))
+            newTabs.append(TabInfo(view: Tab.Favorite, icon: "heart", iconSelected: "heart.fill", name: "Favorite"))
             tabs = newTabs
         }
+        
         
         
     }
@@ -92,24 +94,50 @@ struct CustomTabBarButton: View {
     @Binding var selectedTab: Tab
     var tab : TabInfo
     
+    var isSelected: Bool {
+        if tab.view == selectedTab {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+
     
     var body: some View {
         VStack {
-            if tab.view == selectedTab {
-                
+            // yellow line on top
+            if isSelected {
+                Rectangle()
+                    .foregroundColor(.yellow)
+                    .offset(x: 0, y: -8)
+                    .frame(height:5)
+                    .padding(.bottom, 5)
+                    .zIndex(1)
+                    .transition(.slide)
+                    
+                    
             }
-            Image(systemName: tab.icon)
+            
+            // Tab button 
+            Image(systemName: isSelected ? tab.iconSelected :  tab.icon)
+                .foregroundColor(isSelected ? (tab.iconSelected == "heart.fill" ? .red : .gray) : .gray)
                 .frame(height:20)
                 .font(.title2)
                 .padding(.bottom, 8)
+                .animation(.none, value: isSelected) // no animations
             Text(tab.name)
                 .font(.caption)
+                .animation(.none, value: isSelected) // no animations
+            
+            
         }
-        .padding(.vertical)
         .frame(height: 60)
+        .animation(.easeInOut(duration: 0.8), value: isSelected)
         .background(
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(tab.view == selectedTab ? Color.yellow.opacity(0.5) : Color.clear)
+                        .fill(isSelected ? Color.yellow.opacity(0.5) : Color.clear)
                         .frame(width: 80, height: 70)
                     
                         )

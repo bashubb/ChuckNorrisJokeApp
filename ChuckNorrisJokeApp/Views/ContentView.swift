@@ -21,10 +21,10 @@ struct ContentView: View {
             Text("Chuck Norris Joke app")
                 .font(.title)
                 .foregroundColor(.white)
-                .shadow(radius: 3)
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color.yellow)
+                .shadow(radius: 3)
              
             Spacer()
             

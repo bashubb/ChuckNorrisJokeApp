@@ -35,7 +35,6 @@ struct WelcomeView: View {
                 move = true
             }
         }
-        
         .animation(.easeOut(duration: 1.5).delay(3), value: move)
         
         
