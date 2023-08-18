@@ -65,8 +65,10 @@ struct MainTabView: View {
                 }
                 .background(Rectangle().fill(.ultraThickMaterial).ignoresSafeArea())
                 .frame(height: 70)
+                .animation(.default, value: selectedTab)
                 
             }
+            
             
             
         }
@@ -128,6 +130,7 @@ struct CustomTabBarButton: View {
                 .padding(.bottom, 8)
                 .animation(.none, value: isSelected) // no animations
             Text(tab.name)
+                .foregroundColor(isSelected ? .primary : .gray)
                 .font(.caption)
                 .animation(.none, value: isSelected) // no animations
             

@@ -18,24 +18,33 @@ struct WelcomeView: View {
             MainTabView()
                 .environmentObject(ContentModel())
             
-            ZStack {
-                Color.white
+            GeometryReader  { geo in
+                ZStack {
+                    HStack(spacing:0){
+                        Rectangle()
+                            .offset(x: move ? -(geo.size.width / 2) : 0 , y: 0)
+                        Rectangle()
+                            .offset(x: move ? geo.size.width / 2 : 0, y: 0)
+                    }
                     .ignoresSafeArea()
-                
-                VStack {
-                    Image("chucknorris")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    .animation(.easeOut.delay(3.3), value: move)
+                    
+                    VStack {
+                        Image("chucknorris")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .opacity(move ? 0 : 1)
+                    }
+                    .animation(.easeOut(duration: 1.5).delay(2), value: move)
+                    
                 }
                 
+                .onAppear {
+                    move = true
             }
-            .offset(x: 0, y: move ? -1000 : 0)
-            .onAppear {
-                
-                move = true
             }
         }
-        .animation(.easeOut(duration: 1.5).delay(3), value: move)
+        
         
         
         
