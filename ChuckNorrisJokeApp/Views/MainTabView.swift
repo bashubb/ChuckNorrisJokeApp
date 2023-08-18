@@ -49,7 +49,15 @@ struct MainTabView: View {
                         path.move(to: CGPoint(x: 0, y: 0))
                         path.addLine(to: CGPoint(x: geo.size.width, y: 0))
                     }
-                    .stroke(Color.gray)
+                    .stroke(Color.black)
+                    
+                    // Yellow line on top of the Tab bar
+                    Rectangle()
+                        .foregroundColor(.yellow)
+                        .offset(x: selectedTab == Tab.Jokes ? -(geo.size.width / 4) : geo.size.width / 4 , y: -5)
+                        .frame(width: geo.size.width / 2, height:5)
+                        
+                        
                     
                     HStack(spacing: 0) {
                         Spacer()
@@ -109,19 +117,7 @@ struct CustomTabBarButton: View {
     
     var body: some View {
         VStack {
-            // yellow line on top
-            if isSelected {
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .offset(x: 0, y: -8)
-                    .frame(height:5)
-                    .padding(.bottom, 5)
-                    .zIndex(1)
-                    .transition(.slide)
-                    
-                    
-            }
-            
+        
             // Tab button 
             Image(systemName: isSelected ? tab.iconSelected :  tab.icon)
                 .foregroundColor(isSelected ? (tab.iconSelected == "heart.fill" ? .red : .gray) : .gray)
