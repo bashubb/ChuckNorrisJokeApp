@@ -38,16 +38,11 @@ struct WelcomeView: View {
                     .animation(.easeOut(duration: 1.5).delay(2), value: move)
                     
                 }
-                
                 .onAppear {
                     move = true
-            }
+                }
             }
         }
-        
-        
-        
-        
     }
 }
 

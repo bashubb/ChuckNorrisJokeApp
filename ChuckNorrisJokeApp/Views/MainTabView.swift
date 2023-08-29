@@ -58,8 +58,9 @@ struct MainTabView: View {
                         .frame(width: geo.size.width / 2, height:5)
                         
                         
-                    
+                    // Tab bar buttons 
                     HStack(spacing: 0) {
+                        
                         Spacer()
                         
                         ForEach(tabs) { tab in
@@ -76,8 +77,6 @@ struct MainTabView: View {
                 .animation(.default, value: selectedTab)
                 
             }
-            
-            
             
         }
         .onAppear {
