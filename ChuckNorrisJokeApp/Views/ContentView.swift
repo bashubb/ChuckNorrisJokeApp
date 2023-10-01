@@ -37,12 +37,14 @@ struct ContentView: View {
                 
                 
                 Button("Get Joke") {
-                    model.getRemoteData {
+                    Task {
+                        await model.getRemoteData()
                         
-                        guard model.joke != nil else{return}
-                        self.jokeOnScreen = model.joke?.value ?? ""
-                        self.jokeIsShowing = true
-                        
+                        await MainActor.run {
+                            jokeOnScreen = model.jokeValue!
+                            jokeIsShowing = true
+                            
+                        }
                     }
                 }
                 .buttonStyle(CustomButtonStyle())

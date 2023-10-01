@@ -30,21 +30,17 @@ struct JokeDetailView: View {
                         } else {
                             isAlertShowing = true
                         }
-                        
                     } label: {
-                        
                         Text("Add to favorite")
                         Image(systemName: "heart")
                     }
-                    
                     ShareLink(item: joke)
-                    
-                    
                 }
         }
-        .alert(isPresented: $isAlertShowing) { () -> Alert in
-            Alert(title: Text("You already have that joke, add another one!"))
-                  
+        .alert("You have that joke", isPresented: $isAlertShowing) {
+            Button("Ok",role: .cancel) {}
+        } message: {
+            Text("You already have that joke on your list, add another one!")
         }
     }
     

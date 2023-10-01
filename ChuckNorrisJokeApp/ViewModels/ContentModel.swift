@@ -9,57 +9,47 @@ import Foundation
 
 class ContentModel: ObservableObject {
     
+    
     @Published var favoriteJokes: [String] = []
-    @Published var joke: Joke?
+    @Published var jokeValue: String?
     
     init() {
-        
-        
+    
     }
-    
-    
-    func getRemoteData(completion: @escaping() -> Void) {
+
+    /// Api call and pharsing
+    func getRemoteData() async {
         
-        let url = URL(string: "https://api.chucknorris.io/jokes/random")
-        
-        if let url = url {
+        // Check if the url is not nil
+        if let url = URL(string: "https://api.chucknorris.io/jokes/random") {
             
-            //Create URL request
-            let request = URLRequest(url: url)
-            
-            
-            //Create a session
-            let session = URLSession.shared
-            
-            //Create data task
-            let dataTask = session.dataTask(with: request) { data, response, error in
+            // URL Session
+            do {
+                let (data, _) = try await URLSession.shared.data(from: url)
                 
-                //Check if there is no error
-                if error == nil {
+                //Create a JSON decoder
+                let decoder = JSONDecoder()
+                
+                // Pharse the data
+                do {
+                    let jokeData = try decoder.decode(Joke.self, from: data)
+                    if let value = jokeData.value {
+                        self.jokeValue = value
+                    }
                     
-                    do {
-                        
-                        //Create a json decoder
-                        let decoder = JSONDecoder()
-                        
-                        // parse the data
-                        let dataJoke = try decoder.decode(Joke.self, from: data!)
-                        
-                        DispatchQueue.main.async {
-                            self.joke = dataJoke
-                            
-                            // Call completion closure
-                            completion()
-                        }
-                    }
-                    catch {
-                        // Problem with data
-                        print(error.localizedDescription)
-                    }
+                    
+                } catch {
+                    // Problem with pharsing
+                    print(error.localizedDescription)
                 }
+            } catch {
+                // Problem with data
+                print(error.localizedDescription)
             }
-            dataTask.resume()
+            
         }
+        
     }
-    
 }
+
+
