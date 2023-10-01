@@ -39,6 +39,7 @@ struct MainTabView: View {
                 case Tab.Favorite:
                     // Show Favorite Jokes
                     FavoriteJokesView()
+                    
                 }
                 
                 Spacer()
