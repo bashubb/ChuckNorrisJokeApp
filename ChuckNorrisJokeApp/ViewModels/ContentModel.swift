@@ -11,7 +11,7 @@ class ContentModel: ObservableObject {
     
     
     @Published var favoriteJokes: [String] = []
-    @Published var jokeValue: String?
+    @Published var jokeValue = ""
     
     init() {
     
@@ -34,10 +34,10 @@ class ContentModel: ObservableObject {
                 do {
                     let jokeData = try decoder.decode(Joke.self, from: data)
                     if let value = jokeData.value {
-                        self.jokeValue = value
+                        await MainActor.run {
+                            self.jokeValue = value
+                        }
                     }
-                    
-                    
                 } catch {
                     // Problem with pharsing
                     print(error.localizedDescription)
