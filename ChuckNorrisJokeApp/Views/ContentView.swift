@@ -15,17 +15,33 @@ struct ContentView: View {
     @State var jokeIsShowing = false
     
     
+    
     var body: some View {
         VStack {
             
             // Header
-            Text("Chuck Norris Joke app")
-                .font(.title)
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.yellow)
-                .shadow(radius: 3)
+        
+                Text("Chuck Norris Joke app")
+                        .font(.title)
+                        .foregroundColor(.primary)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        
+                    .background(.ultraThinMaterial)
+          
+                    
+            HStack {
+                
+                Text("Pick the joke category")
+                
+                Picker("choose category", selection: $model.choosenCategory) {
+                    ForEach(model.categories, id:\.self){ data in
+                        Text(data)
+                    }
+                }
+            }
+            
+            
              
             Spacer()
             
@@ -50,15 +66,14 @@ struct ContentView: View {
             .ignoresSafeArea()
             .animation(.default, value: jokeOnScreen)
             .font(.title2)
-            .onReceive(model.$jokeValue, 
-                       perform: { [data = model.jokeValue] newData in
+            .onReceive(model.$jokeValue){ [data = model.jokeValue] newData in
                             if data == newData {
                                 return
                             } else {
                                 jokeOnScreen = newData
                                 jokeIsShowing = true
                             }
-                        })
+                        }
             
             Spacer()
             
@@ -68,7 +83,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainTabView()
             .environmentObject(ContentModel())
     }
 }

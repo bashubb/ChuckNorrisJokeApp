@@ -9,19 +9,31 @@ import Foundation
 
 class ContentModel: ObservableObject {
     
-    
+    @Published var choosenCategory = "random"
+    @Published var categories: [String] = ["random"]
     @Published var favoriteJokes: [String] = []
     @Published var jokeValue = ""
     
-    init() {
     
+    var urlString: String {
+        if choosenCategory == "random"{
+            return "https://api.chucknorris.io/jokes/random"
+        } else {
+            return "https://api.chucknorris.io/jokes/random?category=\(choosenCategory)"
+        }
+    }
+    
+    init() {
+        Task {
+            await getCategories()
+        }
     }
 
     /// Api call and pharsing
     func getRemoteData() async {
         
         // Check if the url is not nil
-        if let url = URL(string: "https://api.chucknorris.io/jokes/random") {
+        if let url = URL(string: urlString) {
             
             // URL Session
             do {
@@ -40,15 +52,44 @@ class ContentModel: ObservableObject {
                     }
                 } catch {
                     // Problem with pharsing
+                    await MainActor.run {
+                        self.jokeValue = "There is no joke, sorry!"
+                    }
                     print(error.localizedDescription)
                 }
             } catch {
+                await MainActor.run {
+                    self.jokeValue = "Sorry, it seems like you don't have an internet connection!"
+                }
                 // Problem with data
                 print(error.localizedDescription)
             }
-            
         }
+    }
+    
+    
+    func getCategories() async {
         
+        if let url = URL(string:"https://api.chucknorris.io/jokes/categories") {
+            
+            do {
+                let(data, _) = try await URLSession.shared.data(from: url)
+                
+                let decoder = JSONDecoder()
+                
+                let categoriesData = try decoder.decode([String].self, from: data)
+                
+                await MainActor.run {
+                    self.categories += categoriesData
+                    print(categories)
+                }
+                
+            } catch {
+                // problem with api cal
+                print(error.localizedDescription)
+            }
+        }
+            
     }
 }
 
