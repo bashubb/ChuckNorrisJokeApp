@@ -18,6 +18,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             
+            // Header
             Text("Chuck Norris Joke app")
                 .font(.title)
                 .foregroundColor(.white)
@@ -30,33 +31,34 @@ struct ContentView: View {
             
             VStack(spacing:40) {
             
+                // Joke Field
                 if jokeIsShowing {
                     JokeDetailView(joke:jokeOnScreen)
                         .padding()
                 }
                 
-                
+                // Button to fetch data
                 Button("Get Joke") {
                     Task {
                         await model.getRemoteData()
-                        
-                        await MainActor.run {
-                            jokeOnScreen = model.jokeValue!
-                            jokeIsShowing = true
-                            
                         }
-                    }
                 }
                 .buttonStyle(CustomButtonStyle())
                 .padding()
-                
-                
-                
                 
             }
             .ignoresSafeArea()
             .animation(.default, value: jokeOnScreen)
             .font(.title2)
+            .onReceive(model.$jokeValue, 
+                       perform: { [data = model.jokeValue] newData in
+                            if data == newData {
+                                return
+                            } else {
+                                jokeOnScreen = newData
+                                jokeIsShowing = true
+                            }
+                        })
             
             Spacer()
             
@@ -72,6 +74,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
+// Custom Button
 struct CustomButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {

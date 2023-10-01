@@ -44,6 +44,7 @@ struct FavoriteJokesView: View {
                     
                     //List of jokes
                 ListOfJokes(show: $show, jokeToShow: $jokeToShow)
+                
             }
             .ignoresSafeArea()
             .blur(radius: show ? 3 : 0)
@@ -88,6 +89,7 @@ struct FavoriteJokesView_Previews: PreviewProvider {
 }
 
 
+
 struct ListOfJokes: View {
     
     @EnvironmentObject var model: ContentModel
@@ -108,9 +110,11 @@ struct ListOfJokes: View {
                 model.favoriteJokes.remove(atOffsets: offsets)
             }
         }
+        
         .listStyle(.inset)
     }
 }
+
 
 
 struct PopUpJoke: View {
