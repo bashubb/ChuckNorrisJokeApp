@@ -87,6 +87,7 @@ struct FavoriteJokesView_Previews: PreviewProvider {
     }
 }
 
+
 struct ListOfJokes: View {
     
     @EnvironmentObject var model: ContentModel
@@ -110,6 +111,7 @@ struct ListOfJokes: View {
         .listStyle(.inset)
     }
 }
+
 
 struct PopUpJoke: View {
     
