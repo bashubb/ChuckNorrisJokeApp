@@ -130,6 +130,7 @@ struct PopUpJoke: View {
                         Image(systemName: "trash")
                         Text("Delete")
                     }
+                    .foregroundColor(.gray)
                 }
                 
                 // Share joke in text message etc
