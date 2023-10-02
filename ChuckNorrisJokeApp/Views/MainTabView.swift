@@ -36,6 +36,7 @@ struct MainTabView: View {
                 case Tab.Jokes:
                     // Show Jokes
                     ContentView()
+    
                 case Tab.Favorite:
                     // Show Favorite Jokes
                     FavoriteJokesView()
@@ -78,6 +79,7 @@ struct MainTabView: View {
                 .animation(.default, value: selectedTab)
                 
             }
+            .fontDesign(.rounded)
             
         }
         .onAppear {

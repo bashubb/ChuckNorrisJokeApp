@@ -18,11 +18,10 @@ struct JokeDetailView: View {
     var body: some View {
         VStack {
             Text(joke)
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.gray.opacity(0.5))
-                    .shadow(color: Color.gray, radius: 8))
+                .background(.regularMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .contextMenu {
                     Button {
                         if !model.favoriteJokes.contains(joke) {
