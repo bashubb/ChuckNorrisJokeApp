@@ -21,8 +21,9 @@ struct ContentView: View {
             
             // Header
             VStack(spacing: 0) {
-                Text("Chuck Norris Joke app")
+                Text("Chuck Norris JokeApp")
                     .font(.title.weight(.semibold))
+                    .fontDesign(.monospaced)
                     .foregroundColor(.primary)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -68,7 +69,7 @@ struct ContentView: View {
                 if jokeIsShowing {
                     JokeDetailView(joke:jokeOnScreen)
                         .padding()
-                        
+                        .transition(.scale(scale: 0.5))
                 }
                 
                 // Button to fetch data
@@ -82,7 +83,7 @@ struct ContentView: View {
                 
             }
             .ignoresSafeArea()
-            .animation(.default, value: jokeOnScreen)
+            .animation(.interactiveSpring(response: 0.8, dampingFraction: 0.4).speed(1.2), value: jokeOnScreen)
             .font(.title2)
             .onReceive(model.$jokeValue){ [data = model.jokeValue] newData in
                 if data == newData {

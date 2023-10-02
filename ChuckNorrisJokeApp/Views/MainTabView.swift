@@ -24,7 +24,6 @@ struct TabInfo: Identifiable {
 struct MainTabView: View {
     
     @State var tabs = [TabInfo]()
-    
     @State var selectedTab = Tab.Jokes
     
     var body: some View {
@@ -36,11 +35,9 @@ struct MainTabView: View {
                 case Tab.Jokes:
                     // Show Jokes
                     ContentView()
-    
                 case Tab.Favorite:
                     // Show Favorite Jokes
                     FavoriteJokesView()
-                    
                 }
                 
                 Spacer()
@@ -56,7 +53,7 @@ struct MainTabView: View {
                     // Yellow line on top of the Tab bar
                     Rectangle()
                         .foregroundColor(.yellow)
-                        .offset(x: selectedTab == Tab.Jokes ? -(geo.size.width / 4) : geo.size.width / 4 , y: -5)
+                        .offset(x: selectedTab == Tab.Jokes ? -(geo.size.width / 4) : geo.size.width / 4 , y: -5).animation(.interactiveSpring(response: 0.8, dampingFraction:          0.5).speed(1.5), value: selectedTab)
                         .frame(width: geo.size.width / 2, height:5)
                         
                         
@@ -79,7 +76,7 @@ struct MainTabView: View {
                 .animation(.default, value: selectedTab)
                 
             }
-            .fontDesign(.rounded)
+            
             
         }
         .onAppear {
