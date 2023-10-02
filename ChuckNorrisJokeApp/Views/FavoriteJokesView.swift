@@ -34,6 +34,7 @@ struct FavoriteJokesView: View {
                     Text("Your Favorite Jokes")
                         .multilineTextAlignment(.center)
                         .font(.title.weight(.semibold))
+                        .fixedSize()
                         .fontDesign(.monospaced)
                         .foregroundColor(.primary)
                         .padding()

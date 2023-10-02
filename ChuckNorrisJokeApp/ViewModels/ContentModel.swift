@@ -81,7 +81,7 @@ class ContentModel: ObservableObject {
                 
                 await MainActor.run {
                     self.categories += categoriesData
-                    print(categories)
+                    
                 }
                 
             } catch {

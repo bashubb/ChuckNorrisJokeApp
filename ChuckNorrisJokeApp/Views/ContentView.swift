@@ -24,6 +24,7 @@ struct ContentView: View {
                 Text("Chuck Norris JokeApp")
                     .font(.title.weight(.semibold))
                     .fontDesign(.monospaced)
+                    .fixedSize()
                     .foregroundColor(.primary)
                     .padding()
                     .frame(maxWidth: .infinity)
