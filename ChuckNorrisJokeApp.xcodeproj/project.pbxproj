@@ -17,6 +17,7 @@
 		B5743E1E2A51FD7100BCFCEF /* FavoriteJokesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */; };
 		B5743E2B2A549ED100BCFCEF /* JokeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */; };
 		B5743E2D2A55CE6400BCFCEF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E2C2A55CE6400BCFCEF /* WelcomeView.swift */; };
+		B5B126A72ACAE2CD00DB61AE /* CustomComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B126A62ACAE2CD00DB61AE /* CustomComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteJokesView.swift; sourceTree = "<group>"; };
 		B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeDetailView.swift; sourceTree = "<group>"; };
 		B5743E2C2A55CE6400BCFCEF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		B5B126A62ACAE2CD00DB61AE /* CustomComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 		B513D4862A43922500329624 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B5B126A52ACAE2A700DB61AE /* Components */,
 				B5743E2C2A55CE6400BCFCEF /* WelcomeView.swift */,
 				B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */,
 				B513D4782A438FEA00329624 /* ContentView.swift */,
@@ -107,6 +110,14 @@
 				B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B5B126A52ACAE2A700DB61AE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B5B126A62ACAE2CD00DB61AE /* CustomComponents.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +192,7 @@
 			files = (
 				B5743E2B2A549ED100BCFCEF /* JokeDetailView.swift in Sources */,
 				B513D4792A438FEA00329624 /* ContentView.swift in Sources */,
+				B5B126A72ACAE2CD00DB61AE /* CustomComponents.swift in Sources */,
 				B5743E1E2A51FD7100BCFCEF /* FavoriteJokesView.swift in Sources */,
 				B5743E2D2A55CE6400BCFCEF /* WelcomeView.swift in Sources */,
 				B513D48A2A43938400329624 /* ContentModel.swift in Sources */,

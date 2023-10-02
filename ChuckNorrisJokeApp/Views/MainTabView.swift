@@ -48,7 +48,7 @@ struct MainTabView: View {
                         path.move(to: CGPoint(x: 0, y: 0))
                         path.addLine(to: CGPoint(x: geo.size.width, y: 0))
                     }
-                    .stroke(Color.black)
+                    .stroke(Color.secondary)
                     
                     // Yellow line on top of the Tab bar
                     Rectangle()
@@ -59,9 +59,7 @@ struct MainTabView: View {
                         
                     // Tab bar buttons 
                     HStack(spacing: 0) {
-                        
                         Spacer()
-                        
                         ForEach(tabs) { tab in
                             CustomTabBarButton(selectedTab: $selectedTab, tab: tab)
                                 .frame(width: (geo.size.width - 40 ) / 2)
@@ -74,10 +72,7 @@ struct MainTabView: View {
                 .background(Rectangle().fill(.ultraThickMaterial).ignoresSafeArea())
                 .frame(height: 70)
                 .animation(.default, value: selectedTab)
-                
             }
-            
-            
         }
         .onAppear {
             //Create tabs
@@ -98,52 +93,4 @@ struct MainTabView_Previews: PreviewProvider {
     }
 }
 
-struct CustomTabBarButton: View {
-    
-    @Binding var selectedTab: Tab
-    var tab : TabInfo
-    
-    var isSelected: Bool {
-        if tab.view == selectedTab {
-            return true
-        }
-        else {
-            return false
-        }
-    }
-    
 
-    
-    var body: some View {
-        VStack {
-        
-            // Tab button 
-            Image(systemName: isSelected ? tab.iconSelected :  tab.icon)
-                .foregroundColor(isSelected ? (tab.iconSelected == "heart.fill" ? .red : .gray) : .gray)
-                .frame(height:20)
-                .font(.title2)
-                .padding(.bottom, 8)
-                .animation(.none, value: isSelected) // no animations
-            Text(tab.name)
-                .foregroundColor(isSelected ? .primary : .gray)
-                .font(.caption)
-                .animation(.none, value: isSelected) // no animations
-            
-            
-        }
-        .frame(height: 60)
-        .animation(.easeInOut(duration: 0.8), value: isSelected)
-        .background(
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(isSelected ? Color.yellow.opacity(0.5) : Color.clear)
-                        .frame(width: 80, height: 70)
-                    
-                        )
-        
-        .onTapGesture {
-            selectedTab = tab.view
-        }
-        
-        
-    }
-}

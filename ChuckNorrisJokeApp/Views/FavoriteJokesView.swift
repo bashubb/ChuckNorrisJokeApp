@@ -27,7 +27,6 @@ struct FavoriteJokesView: View {
     
     var body: some View {
         ZStack {
-            
             VStack(spacing:0) {
                 
                 //Header
@@ -56,8 +55,6 @@ struct FavoriteJokesView: View {
                     //List of jokes
                     ListOfJokes(show: $show, jokeToShow: $jokeToShow)
                 }
-                
-                
             }
             .blur(radius: show ? 3 : 0)
             
@@ -65,7 +62,7 @@ struct FavoriteJokesView: View {
             if show {
                 PopUpJoke(show: $show, jokeToShow: jokeToShow)
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 20).fill(.ultraThinMaterial))
+                    .background(.ultraThinMaterial, in:RoundedRectangle(cornerRadius: 20))
                     .padding()
                     .transition(.slide)
                     .zIndex(1)
@@ -101,7 +98,7 @@ struct FavoriteJokesView_Previews: PreviewProvider {
 }
 
 
-
+// List of favorite Jokes
 struct ListOfJokes: View {
     
     @EnvironmentObject var model: ContentModel
@@ -129,6 +126,7 @@ struct ListOfJokes: View {
 
 
 
+// Pop up with a full version of Joke
 struct PopUpJoke: View {
     
     @EnvironmentObject var model: ContentModel

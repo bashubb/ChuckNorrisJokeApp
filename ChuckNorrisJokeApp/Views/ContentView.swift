@@ -83,7 +83,7 @@ struct ContentView: View {
                 
             }
             .ignoresSafeArea()
-            .animation(.interactiveSpring(response: 0.8, dampingFraction: 0.4).speed(1.2), value: jokeOnScreen)
+            .animation(.interactiveSpring(response: 0.8, dampingFraction: 0.6).speed(1.2), value: jokeOnScreen)
             .font(.title2)
             .onReceive(model.$jokeValue){ [data = model.jokeValue] newData in
                 if data == newData {
@@ -109,20 +109,4 @@ struct ContentView_Previews: PreviewProvider {
 
 
 
-// Custom Button
-struct CustomButtonStyle: ButtonStyle {
-    
-    func makeBody(configuration: Configuration) -> some View {
-        
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(configuration.isPressed ? Color.yellow : Color.gray)
-                .frame(height: 50)
-            configuration.label
-                .foregroundColor(.white)
-        }
-        .scaleEffect(configuration.isPressed ? 0.96 : 1)
-        .animation(.easeOut, value: configuration.isPressed)
-        
-    }
-}
+
