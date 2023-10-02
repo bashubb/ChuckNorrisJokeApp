@@ -23,8 +23,10 @@ struct WelcomeView: View {
                     HStack(spacing:0){
                         Rectangle()
                             .offset(x: move ? -(geo.size.width / 2) : 0 , y: 0)
+                            .fill(Color.black)
                         Rectangle()
                             .offset(x: move ? geo.size.width / 2 : 0, y: 0)
+                            .fill(Color.black)
                     }
                     .ignoresSafeArea()
                     .animation(.easeOut.delay(3.3), value: move)
