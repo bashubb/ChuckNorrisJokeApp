@@ -13,46 +13,56 @@ struct FavoriteJokesView: View {
     
     @State var jokeToShow = ""
     @State var show = false
+    @State private var isFavoritEmpty = false
+    
     @GestureState private var popUpLocation = CGSize.zero
     
-    var headerText: String {
-        if model.favoriteJokes.count != 0 {
-            return "Your Favorite Jokes"
+    var isFavoriteEmpty:Bool {
+        if model.favoriteJokes.isEmpty {
+            return true
         }
-        else {
-            return "You don't have any favorite jokes, add some !"
-        }
+        return false
     }
+        
     
     var body: some View {
         ZStack {
-            
             VStack(spacing:0) {
                 
-                //The header
-                Text(headerText)
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .padding()
-                    .padding(.top, 50)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.yellow)
-                    .shadow(radius: 4)
-                    .padding(.bottom, 4)
+                //Header
+                VStack(spacing: 0) {
+                    Text("Your Favorite Jokes")
+                        .multilineTextAlignment(.center)
+                        .font(.title.weight(.semibold))
+                        .fontDesign(.monospaced)
+                        .foregroundColor(.primary)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 85)
+                        .background(.ultraThickMaterial)
+                    Rectangle()
+                        .fill(Color.secondary.opacity(0.2))
+                        .frame(height: 4)
+                }
                     
                     
+                if isFavoriteEmpty {
+                    Spacer()
+                    EmptyView()
+                    Spacer()
                     
+                } else {
                     //List of jokes
-                ListOfJokes(show: $show, jokeToShow: $jokeToShow)
+                    ListOfJokes(show: $show, jokeToShow: $jokeToShow)
+                }
             }
-            .ignoresSafeArea()
             .blur(radius: show ? 3 : 0)
             
             
             if show {
                 PopUpJoke(show: $show, jokeToShow: jokeToShow)
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 20).fill(.ultraThinMaterial))
+                    .background(.ultraThinMaterial, in:RoundedRectangle(cornerRadius: 20))
                     .padding()
                     .transition(.slide)
                     .zIndex(1)
@@ -87,6 +97,8 @@ struct FavoriteJokesView_Previews: PreviewProvider {
     }
 }
 
+
+// List of favorite Jokes
 struct ListOfJokes: View {
     
     @EnvironmentObject var model: ContentModel
@@ -107,10 +119,14 @@ struct ListOfJokes: View {
                 model.favoriteJokes.remove(atOffsets: offsets)
             }
         }
+        
         .listStyle(.inset)
     }
 }
 
+
+
+// Pop up with a full version of Joke
 struct PopUpJoke: View {
     
     @EnvironmentObject var model: ContentModel
@@ -130,6 +146,7 @@ struct PopUpJoke: View {
                         Image(systemName: "trash")
                         Text("Delete")
                     }
+                    .foregroundColor(.gray)
                 }
                 
                 // Share joke in text message etc
@@ -145,5 +162,17 @@ struct PopUpJoke: View {
             
         }
         
+    }
+}
+
+struct EmptyView: View {
+    var body: some View {
+        VStack {
+            Text("You have no Jokes, add some!")
+                .foregroundColor(.primary)
+                .padding()
+                .background(.regularMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
     }
 }
