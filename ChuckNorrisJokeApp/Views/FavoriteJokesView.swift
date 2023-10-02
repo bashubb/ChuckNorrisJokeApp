@@ -32,15 +32,7 @@ struct FavoriteJokesView: View {
                 //Header
                 VStack(spacing: 0) {
                     Text("Your Favorite Jokes")
-                        .multilineTextAlignment(.center)
-                        .font(.title.weight(.semibold))
-                        .fixedSize()
-                        .fontDesign(.monospaced)
-                        .foregroundColor(.primary)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 85)
-                        .background(.ultraThickMaterial)
+                        .modifier(Title())
                     Rectangle()
                         .fill(Color.secondary.opacity(0.2))
                         .frame(height: 4)

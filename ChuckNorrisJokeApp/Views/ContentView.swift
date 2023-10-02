@@ -22,14 +22,7 @@ struct ContentView: View {
             // Header
             VStack(spacing: 0) {
                 Text("Chuck Norris JokeApp")
-                    .font(.title.weight(.semibold))
-                    .fontDesign(.monospaced)
-                    .fixedSize()
-                    .foregroundColor(.primary)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 85)
-                    .background(.ultraThickMaterial)
+                    .modifier(Title())
                 Rectangle()
                     .fill(Color.secondary.opacity(0.2))
                     .frame(height: 4)
@@ -37,27 +30,30 @@ struct ContentView: View {
             
             // Category picker
             
-            VStack(alignment: .leading){
-                Text("Choose Joke category")
-                    .font(.callout.weight(.thin))
-                    .padding(8)
-                    .padding(.horizontal)
-                    .background(.ultraThickMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                Picker("choose category", selection: $model.choosenCategory) {
-                            ForEach(model.categories, id:\.self){ data in
-                                Text(data)
-                            }
+            VStack(spacing:0){
+                VStack {
+                    Text("Choose Joke category")
+                        .font(.callout.weight(.thin))
+                        .padding(.top, 10)
+                        .padding(.horizontal)
+                    Divider()
+                    Picker("choose category", selection: $model.choosenCategory) {
+                        ForEach(model.categories, id:\.self){ data in
+                            Text(data)
                         }
-                        .tint(Color.gray)
-                        .labelsHidden()
-                    .pickerStyle(.menu)
+                    }
+                    .padding(.bottom, 6)
+                    .tint(Color.gray)
+                    .labelsHidden()
+                }
+                .background(.ultraThickMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(.ultraThickMaterial.opacity(0.3) ,in: RoundedRectangle(cornerRadius: 10))
-            .overlay(
-                Rectangle().stroke(Color.secondary.opacity(0.1), lineWidth: 3))
+            
+                
             
             
             
@@ -109,5 +105,20 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title.weight(.semibold))
+            .fontDesign(.monospaced)
+            .fixedSize()
+            .foregroundColor(.primary)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .frame(height: 85)
+            .background(.ultraThickMaterial)
+        
+    }
+    
+    
+}
 
