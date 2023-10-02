@@ -10,7 +10,22 @@ import Foundation
 class ContentModel: ObservableObject {
     
     @Published var choosenCategory = "random"
-    @Published var categories: [String] = ["random"]
+    @Published var categories: [String] = ["random","animal",
+                                           "career",
+                                           "celebrity",
+                                           "dev",
+                                           "explicit",
+                                           "fashion",
+                                           "food",
+                                           "history",
+                                           "money",
+                                           "movie",
+                                           "music",
+                                           "political",
+                                           "religion",
+                                           "science",
+                                           "sport",
+                                           "travel"]
     @Published var favoriteJokes: [String] = []
     @Published var jokeValue = ""
     

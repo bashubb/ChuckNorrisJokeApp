@@ -17,47 +17,65 @@ struct ContentView: View {
     
     
     var body: some View {
-        VStack {
+        VStack(spacing:0) {
             
             // Header
-        
+            VStack(spacing: 0) {
                 Text("Chuck Norris Joke app")
-                        .font(.title)
-                        .foregroundColor(.primary)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        
-                    .background(.ultraThinMaterial)
-          
-                    
-            HStack {
-                
-                Text("Pick the joke category")
-                
-                Picker("choose category", selection: $model.choosenCategory) {
-                    ForEach(model.categories, id:\.self){ data in
-                        Text(data)
-                    }
-                }
+                    .font(.title.weight(.semibold))
+                    .foregroundColor(.primary)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 85)
+                    .background(.ultraThickMaterial)
+                Rectangle()
+                    .fill(Color.secondary.opacity(0.2))
+                    .frame(height: 4)
             }
             
+            // Category picker
             
-             
+            VStack(alignment: .leading){
+                Text("Choose Joke category")
+                    .font(.callout.weight(.thin))
+                    .padding(8)
+                    .padding(.horizontal)
+                    .background(.ultraThickMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                Picker("choose category", selection: $model.choosenCategory) {
+                            ForEach(model.categories, id:\.self){ data in
+                                Text(data)
+                            }
+                        }
+                        .tint(Color.gray)
+                        .labelsHidden()
+                    .pickerStyle(.menu)
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.ultraThickMaterial.opacity(0.3) ,in: RoundedRectangle(cornerRadius: 10))
+            .overlay(
+                Rectangle().stroke(Color.secondary.opacity(0.1), lineWidth: 3))
+            
+            
+            
+            
             Spacer()
             
             VStack(spacing:40) {
-            
+                
                 // Joke Field
                 if jokeIsShowing {
                     JokeDetailView(joke:jokeOnScreen)
                         .padding()
+                        
                 }
                 
                 // Button to fetch data
                 Button("Get Joke") {
                     Task {
                         await model.getRemoteData()
-                        }
+                    }
                 }
                 .buttonStyle(CustomButtonStyle())
                 .padding()
@@ -67,13 +85,13 @@ struct ContentView: View {
             .animation(.default, value: jokeOnScreen)
             .font(.title2)
             .onReceive(model.$jokeValue){ [data = model.jokeValue] newData in
-                            if data == newData {
-                                return
-                            } else {
-                                jokeOnScreen = newData
-                                jokeIsShowing = true
-                            }
-                        }
+                if data == newData {
+                    return
+                } else {
+                    jokeOnScreen = newData
+                    jokeIsShowing = true
+                }
+            }
             
             Spacer()
             
@@ -89,20 +107,19 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
+
 // Custom Button
 struct CustomButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         
         ZStack {
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: 10)
                 .fill(configuration.isPressed ? Color.yellow : Color.gray)
                 .frame(height: 50)
-            
             configuration.label
                 .foregroundColor(.white)
         }
-        .shadow(radius: 8)
         .scaleEffect(configuration.isPressed ? 0.96 : 1)
         .animation(.easeOut, value: configuration.isPressed)
         
