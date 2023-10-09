@@ -31,19 +31,14 @@ class ContentModel: ObservableObject {
     
     
     init() {
-        
-        if let savedItems = UserDefaults.standard.data(forKey: "favoriteJokes") {
-            if let decodedItems = try? JSONDecoder().decode([String].self, from: savedItems) {
-                favoriteJokes = decodedItems
-                return
-            }
-        }
-        favoriteJokes = []
-        
         Task {
             await getCategories()
         }
+        
+        loadFavoriteJokes()
     }
+    
+   
 
     /// Api call and pharsing
     func getRemoteData() async {
@@ -110,6 +105,16 @@ class ContentModel: ObservableObject {
             }
         }
             
+    }
+    
+    func loadFavoriteJokes() {
+        if let savedItems = UserDefaults.standard.data(forKey: "favoriteJokes") {
+            if let decodedItems = try? JSONDecoder().decode([String].self, from: savedItems) {
+                favoriteJokes = decodedItems
+                return
+            }
+        }
+        favoriteJokes = []
     }
     
 }
