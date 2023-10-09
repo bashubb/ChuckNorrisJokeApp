@@ -11,8 +11,14 @@ class ContentModel: ObservableObject {
     
     @Published var choosenCategory = "random"
     @Published var categories: [String] = ["random"]
-    @Published var favoriteJokes: [String] = []
     @Published var jokeValue = ""
+    @Published var favoriteJokes: [String] = [] {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(favoriteJokes) {
+                UserDefaults.standard.set(encoded, forKey: "favoriteJokes")
+            }
+        }
+    }
     
     
     var urlString: String {
@@ -23,7 +29,17 @@ class ContentModel: ObservableObject {
         }
     }
     
+    
     init() {
+        
+        if let savedItems = UserDefaults.standard.data(forKey: "favoriteJokes") {
+            if let decodedItems = try? JSONDecoder().decode([String].self, from: savedItems) {
+                favoriteJokes = decodedItems
+                return
+            }
+        }
+        favoriteJokes = []
+        
         Task {
             await getCategories()
         }
@@ -70,13 +86,17 @@ class ContentModel: ObservableObject {
     
     func getCategories() async {
         
+        // check if the url is not nill
         if let url = URL(string:"https://api.chucknorris.io/jokes/categories") {
             
+            // URL session
             do {
                 let(data, _) = try await URLSession.shared.data(from: url)
                 
+                // Create JSON decoder
                 let decoder = JSONDecoder()
                 
+                // Pharse the data
                 let categoriesData = try decoder.decode([String].self, from: data)
                 
                 await MainActor.run {
