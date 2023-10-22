@@ -5,10 +5,11 @@
 It's not a problem solving app, but a little joke can completely change even a hard day. User can display one random joke at the time, 
 if it will be good, could be saved in the favorite joke list, or shared to someone by text message.
 
-The app is quite simple. For user request it fetches joke of choosen category about Chuck Norris from API. 
+The app is quite simple. For user request it fetches a joke of choosen category about Chuck Norris from API. 
 It comes in JSON format, so it is decoded and User can see it on the screen, share it with friends or save it Favorites.
-I have choosen UserDefaults to store the list of favorite jokes in local memory of device.
+I have choosen UserDefaults to store the list of favorite jokes in local memory of the device.
 In this app I had a lot of fun with animations, and building my own custom elements of a UI. 
+I was also my first experience with creating Unit Tests and it's my goal for the future to get full Test coverage.
 
 <h2>Technology</h2>
 <ul>
