@@ -8,23 +8,19 @@
 @testable import ChuckNorrisJokeApp
 import XCTest
 
-
 @MainActor
 final class ChuckNorrisJokeAppTests: XCTestCase {
     
     var sut: ContentModel!
     
-    
     override func setUp() {
         sut = ContentModel()
     }
-    
     
     override func tearDown() {
         sut =  nil
     }
 
-    
     func test_jokeChoosenCategoryChangesArePublished() {
         XCTAssertSendsChangeNotification(sut.choosenCategory = "test", from: sut,
                                          "Changing the value of ContentModel.choosenCategory should trigger a change notification ")
@@ -40,19 +36,10 @@ final class ChuckNorrisJokeAppTests: XCTestCase {
                                          "Changing the value of ContentModel.jokeValue should trigger a change notification ")
     }
     
-    
     func test_favoriteJokesChangesArePublished() {
         XCTAssertSendsChangeNotification(sut.favoriteJokes = ["test"], from: sut, "Changing the value of ContentModel.favoriteJokes should trigger a change notification ")
     }
-    
-    
-   
 }
-
-
-
-
-
 
 func XCTAssertSendsChangeNotification<T, U: ObservableObject>(_ expression: @autoclosure () -> T, from object: U, _ message: @autoclosure () -> String = "", file: StaticString = #filePath, line: UInt = #line ) {
     
@@ -61,7 +48,6 @@ func XCTAssertSendsChangeNotification<T, U: ObservableObject>(_ expression: @aut
     let checker = object.objectWillChange.sink { _ in
         changePublished = true
     }
-    
     _ = checker
     _ = expression()
     

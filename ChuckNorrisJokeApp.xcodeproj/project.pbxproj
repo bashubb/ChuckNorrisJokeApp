@@ -13,6 +13,9 @@
 		B513D47E2A438FEC00329624 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B513D47D2A438FEC00329624 /* Preview Assets.xcassets */; };
 		B513D4882A43924700329624 /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513D4872A43924700329624 /* Joke.swift */; };
 		B513D48A2A43938400329624 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513D4892A43938400329624 /* ContentModel.swift */; };
+		B55CFFC62BFD3E420017BAC2 /* ListOfJokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CFFC52BFD3E420017BAC2 /* ListOfJokes.swift */; };
+		B55CFFC82BFD3E950017BAC2 /* PopUpJoke.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CFFC72BFD3E950017BAC2 /* PopUpJoke.swift */; };
+		B55CFFCA2BFD3ED00017BAC2 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CFFC92BFD3ED00017BAC2 /* EmptyView.swift */; };
 		B5743E1C2A51FC9C00BCFCEF /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */; };
 		B5743E1E2A51FD7100BCFCEF /* FavoriteJokesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */; };
 		B5743E2B2A549ED100BCFCEF /* JokeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */; };
@@ -39,6 +42,9 @@
 		B513D47D2A438FEC00329624 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B513D4872A43924700329624 /* Joke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
 		B513D4892A43938400329624 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		B55CFFC52BFD3E420017BAC2 /* ListOfJokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfJokes.swift; sourceTree = "<group>"; };
+		B55CFFC72BFD3E950017BAC2 /* PopUpJoke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpJoke.swift; sourceTree = "<group>"; };
+		B55CFFC92BFD3ED00017BAC2 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteJokesView.swift; sourceTree = "<group>"; };
 		B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeDetailView.swift; sourceTree = "<group>"; };
@@ -129,9 +135,20 @@
 				B5743E1B2A51FC9C00BCFCEF /* MainTabView.swift */,
 				B513D4782A438FEA00329624 /* ContentView.swift */,
 				B5743E1D2A51FD7100BCFCEF /* FavoriteJokesView.swift */,
-				B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */,
+				B55CFFCB2BFD3EF10017BAC2 /* JokeGroup */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B55CFFCB2BFD3EF10017BAC2 /* JokeGroup */ = {
+			isa = PBXGroup;
+			children = (
+				B5743E2A2A549ED100BCFCEF /* JokeDetailView.swift */,
+				B55CFFC52BFD3E420017BAC2 /* ListOfJokes.swift */,
+				B55CFFC72BFD3E950017BAC2 /* PopUpJoke.swift */,
+				B55CFFC92BFD3ED00017BAC2 /* EmptyView.swift */,
+			);
+			path = JokeGroup;
 			sourceTree = "<group>";
 		};
 		B5B126A52ACAE2A700DB61AE /* Components */ = {
@@ -196,7 +213,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					B513D4722A438FEA00329624 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -252,11 +269,14 @@
 			files = (
 				B5743E2B2A549ED100BCFCEF /* JokeDetailView.swift in Sources */,
 				B513D4792A438FEA00329624 /* ContentView.swift in Sources */,
+				B55CFFC82BFD3E950017BAC2 /* PopUpJoke.swift in Sources */,
 				B5B126A72ACAE2CD00DB61AE /* CustomComponents.swift in Sources */,
 				B5743E1E2A51FD7100BCFCEF /* FavoriteJokesView.swift in Sources */,
 				B5743E2D2A55CE6400BCFCEF /* WelcomeView.swift in Sources */,
+				B55CFFCA2BFD3ED00017BAC2 /* EmptyView.swift in Sources */,
 				B513D48A2A43938400329624 /* ContentModel.swift in Sources */,
 				B513D4772A438FEA00329624 /* ChuckNorrisJokeApp.swift in Sources */,
+				B55CFFC62BFD3E420017BAC2 /* ListOfJokes.swift in Sources */,
 				B513D4882A43924700329624 /* Joke.swift in Sources */,
 				B5743E1C2A51FC9C00BCFCEF /* MainTabView.swift in Sources */,
 			);
@@ -285,6 +305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -345,6 +366,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -464,7 +486,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bashubb.ChuckNorrisJokeAppTests;
@@ -488,7 +510,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bashubb.ChuckNorrisJokeAppTests;

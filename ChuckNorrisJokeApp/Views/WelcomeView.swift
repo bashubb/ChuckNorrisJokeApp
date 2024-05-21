@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    
     @State private var move = false
     
     var body: some View {
-        
-        
         ZStack {
             MainTabView()
                 .environmentObject(ContentModel())
@@ -38,7 +35,6 @@ struct WelcomeView: View {
                             .opacity(move ? 0 : 1)
                     }
                     .animation(.easeOut(duration: 1.5).delay(2), value: move)
-                    
                 }
                 .onAppear {
                     move = true

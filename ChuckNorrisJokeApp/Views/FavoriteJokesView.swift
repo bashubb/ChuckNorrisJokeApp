@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct FavoriteJokesView: View {
-    
     @EnvironmentObject var model: ContentModel
     
     @State var jokeToShow = ""
@@ -24,7 +23,6 @@ struct FavoriteJokesView: View {
         return false
     }
         
-    
     var body: some View {
         ZStack {
             VStack(spacing:0) {
@@ -37,20 +35,17 @@ struct FavoriteJokesView: View {
                         .fill(Color.secondary.opacity(0.2))
                         .frame(height: 4)
                 }
-                    
-                    
+                      
                 if isFavoriteEmpty {
                     Spacer()
                     EmptyView()
                     Spacer()
-                    
                 } else {
                     //List of jokes
                     ListOfJokes(show: $show, jokeToShow: $jokeToShow)
                 }
             }
             .blur(radius: show ? 3 : 0)
-            
             
             if show {
                 PopUpJoke(show: $show, jokeToShow: jokeToShow)
@@ -77,9 +72,7 @@ struct FavoriteJokesView: View {
         }
         .animation(.default, value:show)
     }
-    
 }
-
 
 struct FavoriteJokesView_Previews: PreviewProvider {
     static var previews: some View {
@@ -91,81 +84,3 @@ struct FavoriteJokesView_Previews: PreviewProvider {
 }
 
 
-// List of favorite Jokes
-struct ListOfJokes: View {
-    
-    @EnvironmentObject var model: ContentModel
-    @Binding var show: Bool
-    @Binding var jokeToShow: String
-    
-    var body: some View {
-        List {
-            ForEach($model.favoriteJokes, id: \.self) { $item in
-                Text(item)
-                    .lineLimit(2)
-                    .onTapGesture {
-                        jokeToShow = item
-                        show.toggle()
-                    }
-            }
-            .onDelete { offsets in
-                model.favoriteJokes.remove(atOffsets: offsets)
-            }
-        }
-        
-        .listStyle(.inset)
-    }
-}
-
-
-
-// Pop up with a full version of Joke
-struct PopUpJoke: View {
-    
-    @EnvironmentObject var model: ContentModel
-    @Binding var show: Bool
-    var jokeToShow: String
-    
-    var body: some View {
-        VStack (spacing: 15) {
-            HStack(spacing: 30) {
-                
-                // Delete joke from the list
-                Button {
-                    model.favoriteJokes.remove(at: (model.favoriteJokes.firstIndex(of: jokeToShow)!))
-                    show = false
-                } label: {
-                    HStack {
-                        Image(systemName: "trash")
-                        Text("Delete")
-                    }
-                    .foregroundColor(.gray)
-                }
-                
-                // Share joke in text message etc
-                ShareLink(item: jokeToShow)
-                    .foregroundColor(.gray)
-            }
-            .font(.caption)
-            .frame(maxWidth: .infinity, alignment: .trailing)
-            
-            Divider()
-            
-            Text(jokeToShow)
-            
-        }
-        
-    }
-}
-
-struct EmptyView: View {
-    var body: some View {
-        VStack {
-            Text("You have no Jokes, add some!")
-                .foregroundColor(.primary)
-                .padding()
-                .background(.regularMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-        }
-    }
-}

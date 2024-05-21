@@ -7,11 +7,8 @@
 
 import SwiftUI
 
-// Custom Button
 struct CustomButtonStyle: ButtonStyle {
-    
     func makeBody(configuration: Configuration) -> some View {
-        
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(configuration.isPressed ? Color.yellow : Color.gray)
@@ -21,15 +18,12 @@ struct CustomButtonStyle: ButtonStyle {
         }
         .scaleEffect(configuration.isPressed ? 0.96 : 1)
         .animation(.easeOut, value: configuration.isPressed)
-        
     }
 }
 
-
-// Custom TabBar Button
 struct CustomTabBarButton: View {
-    
     @Binding var selectedTab: Tab
+    
     var tab : TabInfo
     var isSelected: Bool {
         if tab.view == selectedTab {
@@ -64,5 +58,20 @@ struct CustomTabBarButton: View {
         .onTapGesture {
             selectedTab = tab.view
         }
+    }
+}
+
+
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title.weight(.semibold))
+            .fontDesign(.monospaced)
+            .fixedSize()
+            .foregroundColor(.primary)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .frame(height: 85)
+            .background(.ultraThickMaterial)
     }
 }

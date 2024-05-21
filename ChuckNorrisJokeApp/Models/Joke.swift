@@ -16,7 +16,6 @@ struct Joke: Decodable, Identifiable {
     var updated_at: String?
     var url: String?
     var value: String?
-    
 }
 
 

@@ -12,7 +12,6 @@ enum Tab {
     case Favorite
 }
 
-
 struct TabInfo: Identifiable {
     var id = UUID()
     var view : Tab
@@ -27,10 +26,8 @@ struct MainTabView: View {
     @State var selectedTab = Tab.Jokes
     
     var body: some View {
-        
         GeometryReader { geo in
             VStack {
-                
                 switch(selectedTab) {
                 case Tab.Jokes:
                     // Show Jokes
@@ -64,10 +61,8 @@ struct MainTabView: View {
                             CustomTabBarButton(selectedTab: $selectedTab, tab: tab)
                                 .frame(width: (geo.size.width - 40 ) / 2)
                         }
-                        
                         Spacer()
                     }
-                    
                 }
                 .background(Rectangle().fill(.ultraThickMaterial).ignoresSafeArea())
                 .frame(height: 70)
@@ -80,10 +75,7 @@ struct MainTabView: View {
             newTabs.append(TabInfo(view: Tab.Jokes, icon: "smiley", iconSelected: "smiley.fill", name: "Jokes"))
             newTabs.append(TabInfo(view: Tab.Favorite, icon: "heart", iconSelected: "heart.fill", name: "Favorite"))
             tabs = newTabs
-        }
-        
-        
-        
+        }    
     }
 }
 

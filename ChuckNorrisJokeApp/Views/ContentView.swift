@@ -8,17 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @EnvironmentObject var model: ContentModel
     
     @State var jokeOnScreen = ""
     @State var jokeIsShowing = false
-    
-    
-    
+ 
     var body: some View {
         VStack(spacing:0) {
-            
             // Header
             VStack(spacing: 0) {
                 Text("Chuck Norris JokeApp")
@@ -29,7 +25,6 @@ struct ContentView: View {
             }
             
             // Category picker
-            
             VStack(spacing:0){
                 VStack {
                     Text("Choose Joke category")
@@ -53,15 +48,9 @@ struct ContentView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(.ultraThickMaterial.opacity(0.3) ,in: RoundedRectangle(cornerRadius: 10))
             
-                
-            
-            
-            
-            
             Spacer()
             
             VStack(spacing:40) {
-                
                 // Joke Field
                 if jokeIsShowing {
                     JokeDetailView(joke:jokeOnScreen)
@@ -105,20 +94,4 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-struct Title: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.title.weight(.semibold))
-            .fontDesign(.monospaced)
-            .fixedSize()
-            .foregroundColor(.primary)
-            .padding()
-            .frame(maxWidth: .infinity)
-            .frame(height: 85)
-            .background(.ultraThickMaterial)
-        
-    }
-    
-    
-}
 

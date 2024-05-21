@@ -8,7 +8,6 @@
 import Foundation
 
 class ContentModel: ObservableObject {
-    
     @Published var choosenCategory = "random"
     @Published var categories: [String] = ["random"]
     @Published var jokeValue = ""
@@ -20,7 +19,6 @@ class ContentModel: ObservableObject {
         }
     }
     
-    
     var urlString: String {
         if choosenCategory == "random"{
             return "https://api.chucknorris.io/jokes/random"
@@ -29,31 +27,21 @@ class ContentModel: ObservableObject {
         }
     }
     
-    
     init() {
         Task {
             await getCategories()
         }
-        
         loadFavoriteJokes()
     }
     
-   
-
-    /// Api call and pharsing
     func getRemoteData() async {
-        
-        // Check if the url is not nil
         if let url = URL(string: urlString) {
             
-            // URL Session
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 
-                //Create a JSON decoder
                 let decoder = JSONDecoder()
                 
-                // Pharse the data
                 do {
                     let jokeData = try decoder.decode(Joke.self, from: data)
                     if let value = jokeData.value {
@@ -62,7 +50,6 @@ class ContentModel: ObservableObject {
                         }
                     }
                 } catch {
-                    // Problem with pharsing
                     await MainActor.run {
                         self.jokeValue = "There is no joke, sorry!"
                     }
@@ -72,35 +59,27 @@ class ContentModel: ObservableObject {
                 await MainActor.run {
                     self.jokeValue = "Sorry, it seems like you don't have an internet connection!"
                 }
-                // Problem with data
                 print(error.localizedDescription)
             }
         }
     }
     
-    
     func getCategories() async {
         
-        // check if the url is not nill
         if let url = URL(string:"https://api.chucknorris.io/jokes/categories") {
             
-            // URL session
             do {
                 let(data, _) = try await URLSession.shared.data(from: url)
                 
-                // Create JSON decoder
                 let decoder = JSONDecoder()
-                
-                // Pharse the data
+               
                 let categoriesData = try decoder.decode([String].self, from: data)
                 
                 await MainActor.run {
                     self.categories += categoriesData
                     
                 }
-                
             } catch {
-                // problem with api cal
                 print(error.localizedDescription)
             }
         }
